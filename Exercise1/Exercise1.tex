@@ -1,0 +1,52 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=3cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{paralist}
+\author{Abendroth}
+\title{Excercise1}
+\begin{document}
+\section*{Exercise 1}
+\subsection*{Task}
+Write a python script which finds the minimum of a given function using a steepest decent line search algorithm with optimal step size. The function to be minimized is
+\begin{align*}
+f(\mathbf{x})=f(x_0,x_1)=(x_0-2 x_1)^2 + (x_0-2)^2
+\end{align*}
+A possible outline of the algorithm is given as follows:
+\begin{description}
+ \item[initialize]{$i=0$, $\mathbf{x}_i=\mathbf{x}_0$}
+ \item[compute]{$\nabla f(\mathbf{x}_i)$}
+ \item[while]{$\nabla f(\mathbf{x}_i) > \mathrm{tol}$:}
+ \begin{description}
+  \item[set search direction]{$\mathbf{s}_i=-\nabla f(\mathbf{x}_i)$}
+  \item[set]{$j=0$, $\alpha_j=0$}
+  \item[while]{$\nabla_\alpha f(\mathbf{\mathbf{x}_i+ \alpha \mathbf{s}}_i) > \mathrm{tol}$}
+  \begin{description}
+   \item[set]{$a_{j+1}=a_j- \frac{\nabla_{\alpha} f(\mathbf{x}_i + \alpha_j \mathbf{s}_i)}{\nabla^2_{\alpha} f(\mathbf{x}_i+ \alpha_j \mathbf{s}_i)}$}
+   \item[set]{$j=j+1$}
+  \end{description}
+  \item[set]{$\mathbf{x}_{i+1}=\mathbf{x}_i+\alpha_j \mathbf{s}_i$}
+  \item[set]{$i=i+1$}
+ \end{description}  
+\end{description}
+
+\subsection*{Hints}
+\begin{itemize}
+\item{Use the template \tt{Exercise1.py}}
+\item{Note that f is a two parametric function.}
+\item{Write separate subroutines for the function, its gradient and its hessian.}
+\item{The inner loop is a 1D-Newton iteration, which requires gradient and hessian with respect to $\alpha$, which also should be coded as separate subroutines.}
+\item{Try to visualize the minimization procedure.}
+\item{Replace the Newton loop with the Armijo-backtracking algorithm or a damped-Newton algorithm.}
+\item{Compare the performance of the different algorithms.}
+\item{Try other functions such as:}
+ \begin{itemize}
+  \item{Simple quadratic functional: $f(\mathbf{x})=x_0^2+x_1^2$}
+  \item{Rosenbrook function: $f(\mathbf{x})=(1-x_0)^2 + 100*(x_1-x_0^2)^2$}
+ \end{itemize}
+\end{itemize}
+\end{document}
